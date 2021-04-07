@@ -1,0 +1,14 @@
+complexnumber(复数)
+realnumber(实数):复数
+imaginarynumber(虚数):复数
+rationalnumber(有理数):实数
+irrationalnumber(无理数):实数
+wholenumber(整数):有理数
+naturalnumber(自然数):整数
+
+number抽象的数
+
+
+整数integer 可以存储一个任意大小的整数（自动扩容）
+有理数rational 有整数分子和分母
+
