@@ -14,6 +14,9 @@ int main(){
 	//recvTest({ {3,1,2,3} ,{1,2,3} });
 	Matrix<double> m({ { 1.,6.,3 }, { 123.,2,3 } });
 	//Matrix<double> m(3);
-	cout << m.toString() << endl;
+	cout << m << endl;
+	auto m2=m *= 2;
+	cout << (m+=m2) << endl;
+	cout << (m == m) << endl;
 	return 0;
 }

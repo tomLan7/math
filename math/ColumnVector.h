@@ -5,4 +5,20 @@ template<typename T>
 class ColumnVector:public std::vector<T>
 {
 public:
+	ColumnVector<T>& operator*=(double k) {
+
+		for (auto& i : *this) {
+			i *= k;
+		}
+		return *this;
+	}
+	ColumnVector<T>& operator+=(ColumnVector<T>& or ) {
+		if (size()!=or.size()) {
+			//TODO: Ìí¼ÓÅ×³öÒì³£
+		}
+		for(size_t i = 0; i < size(); i++) {
+			at(i) += or .at(i);
+		}
+		return *this;
+	}
 };

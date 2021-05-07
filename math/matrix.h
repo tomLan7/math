@@ -21,7 +21,7 @@ public:
 		for (auto& i : list) {
 			(*iter++).assign(i.begin(), i.end());
 		}
-	}//由数组来初始化。数组和列数，会自动导入
+	}//level阶 零矩阵
 	Matrix(int level)
 	{
 		_content.resize(level);
@@ -48,21 +48,45 @@ public:
 	//monomial<Matrix> getAlgebraicCofactor(int r, int c);
 	Matrix	getCofactor(int r,int c);//获得指定元素的余子式矩阵
 	//数乘
-	Matrix& operator*=(int k) {
+	Matrix<T>& operator*=(double k) {
 		for (auto& i: _content) {
 			i *= k;
 		}
+		return *this;
 	}
-	Matrix& operator+=(Matrix& om) {
+	Matrix<T>& operator+=(Matrix<T>& om) {
 
-		for (int i = 0; i < om.size();i++) {
-			i *= k;
+		for (size_t i = 0; i < om.getCol();i++) {
+			_content[i] += om[i];
 		}
+		return *this;
+	}
+	bool operator==(Matrix<T>& om) {
+		
+		for (int i = 0; i < om.getCol(); i++) {
+			if (_content[i]!=om[i]) {
+				return false;
+			}
+		}
+		return true;
 	}
 	Matrix& operator*=(Matrix&);
 	Matrix& operator/(T&&);
+	ColumnVector<T>& operator[](size_t index) {
+		return _content[index];
+	}
 	int getRank();//返回矩阵的秩，，-------------------------------------------------暂未实现
-	int getRow();//返回行数
-	int getCol();//返回列数
+	//返回行数
+	int getRow() {
+		return _content[0].size();
+	}
+	//返回列数
+	int getCol() {
+		return _content.size();
+	}
 	Matrix operator()(Matrix vec);	//对矩阵线性变换
 };
+template<class T> std::ostream& operator<<(std::ostream& out, Matrix<T> m) {
+	out << m.toString();
+	return out;
+}
