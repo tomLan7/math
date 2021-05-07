@@ -9,6 +9,7 @@ public:
 	tool();
 	~tool();
 }; 
+
 class mapping{//映射,传入一个返回另一个
 	
 };
