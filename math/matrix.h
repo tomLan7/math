@@ -29,12 +29,12 @@ public:
 			i.resize(level);
 		}
 	}
-	std::string toString() {
+	std::string toString()const{
 		std::ostringstream os;
-		for (auto&i: _content) {
+		for (int i = 0; i < getRow(); i++) {
 			os << "|";
-			for (auto& j:i) {
-				os << j<<",\t";
+			for (int j = 0; j < getCol(); j++) {
+				os << _content[j][i]<<",\t";
 			}
 			os << "|\n";
 		}
@@ -48,7 +48,7 @@ public:
 	//monomial<Matrix> getAlgebraicCofactor(int r, int c);
 	Matrix	getCofactor(int r,int c);//获得指定元素的余子式矩阵
 	//数乘
-	Matrix<T>& operator*=(T k) {
+	Matrix<T>& operator*=(const T& k) {
 		for (auto& i: _content) {
 			i *= k;
 		}
@@ -57,14 +57,14 @@ public:
 	Matrix<T>& operator+=(const Matrix<T>& om) {
 
 		for (size_t i = 0; i < om.getCol();i++) {
-			_content[i] += om._content[i];
+			_content[i] += om[i];
 		}
 		return *this;
 	}
 	bool operator==(const Matrix<T>& om) {
 		
-		for (int i = 0; i < om.getCol(); i++) {
-			if (_content[i]!=om._content[i]) {
+		for (unsigned int i = 0; i < om.getCol(); i++) {
+			if (_content[i]!=om[i]) {
 				return false;
 			}
 		}
@@ -73,8 +73,11 @@ public:
 	Matrix& operator*=(const Matrix&) {
 
 	}
-	Matrix& operator/=(const T&&);
-	ColumnVector<T>& operator[](size_t index)const{
+	Matrix& operator/=(const T&);
+	ColumnVector<T>& operator[](size_t index){
+		return _content[index];
+	}
+	const ColumnVector<T>& operator[](size_t index)const {
 		return _content[index];
 	}
 	int getRank();//返回矩阵的秩，，-------------------------------------------------暂未实现
@@ -86,9 +89,9 @@ public:
 	int getCol() const{
 		return _content.size();
 	}
-	Matrix operator()(Matrix vec);	//对矩阵线性变换
+	Matrix operator()(const Matrix& vec);	//对矩阵线性变换
 };
-template<class T> std::ostream& operator<<(std::ostream& out, Matrix<T> m) {
+template<class T> std::ostream& operator<<(std::ostream& out, const Matrix<T>& m) {
 	out << m.toString();
 	return out;
 }

@@ -13,4 +13,5 @@ public:
 	//获取行列式的值，如果行列式过多,则考虑先展开再计算
 	T getValue();
 	T get(int x, int y);
+	
 };
