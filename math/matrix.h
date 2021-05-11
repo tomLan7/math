@@ -5,7 +5,7 @@
 #include<string>
 #include<ostream>
 #include<sstream>
-
+template<class T> class ColumnVector;
 template<typename T>
 class Matrix//矩阵
 {
@@ -61,6 +61,12 @@ public:
 		}
 		return *this;
 	}
+	Matrix<T> operator+(const Matrix<T>& om) {
+
+		auto tem = *tihs;
+		tem += om;
+		return tem;
+	}
 	bool operator==(const Matrix<T>& om) {
 		
 		for (unsigned int i = 0; i < om.getCol(); i++) {
@@ -70,6 +76,10 @@ public:
 		}
 		return true;
 	}
+	ColumnVector<T>& operator*(const ColumnVector<T>& v)const{
+		
+	}
+	
 	Matrix& operator*=(const Matrix&) {
 
 	}
@@ -79,6 +89,13 @@ public:
 	}
 	const ColumnVector<T>& operator[](size_t index)const {
 		return _content[index];
+	}
+	const RowVector<T>& getRowVecAt(size_t index)const{
+		RowVector vec;
+		//TODO: 矩阵乘向量
+	}
+	RowVector<T>& getRowVecAt(size_t index){
+		//TODO: 获得矩阵的行向量
 	}
 	int getRank();//返回矩阵的秩，，-------------------------------------------------暂未实现
 	//返回行数
