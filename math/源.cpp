@@ -20,7 +20,12 @@ void testVectorAlg() {
 	bool b5 = (c + c2) * x == c * x + c2 * x;
 	cout << b1 << "和" << b2 << "和" << b3 << "和" << b4 << "和" << b5   << endl;
 }
+void testVectorCalculation() {
+	RowVector<double> x{3,4};
+	ColumnVector<double> y{ 3,4 };
+	cout << (x * y) << endl;
+}
 int main(){
-	testVectorAlg();
+	testVectorCalculation();
 	return 0;
 }

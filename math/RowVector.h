@@ -3,7 +3,9 @@
 #include<string>
 #include<ostream>
 #include<sstream>
-template<typename T>
+#include"VectorException.h"
+template<class T> class ColumnVector;
+template<typename T=double>
 class RowVector:public std::vector<T>
 {
 public:
@@ -19,15 +21,31 @@ public:
 		return tem *= k;
 	}
 	RowVector<T>& operator+=(const RowVector<T>& or) {
-		assert(size()==or.size());
+		if (size()!=or.size()) {
+			throw DimensionNotMatch("行向量加法");
+		}
 		for* (int i = 0; i < size(); i++) {
 			at(i) += or .at(i);
 		}
 		return *this;
 	}
 	RowVector<T> operator+(const RowVector<T>& k) const{
+		if (size()!=k.size()) {
+			throw DimensionNotMatch("行向量加法");
+		}
 		auto tem = *this;
 		return tem += k;
+	}
+	
+	T operator*(const ColumnVector<T>& k)const{
+		if (size()!= k.size()) {
+			throw DimensionNotMatch("行向量乘列向量时维度错误");
+		}
+		T tem{0};
+		for (int i = 0; i < size();i++) {
+			tem += (at(i)*k[i]);
+		}
+		return tem;
 	}
 	std::string toString()const{
 		std::ostringstream os;

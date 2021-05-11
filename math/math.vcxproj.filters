@@ -51,6 +51,9 @@
     <ClCompile Include="RowVector.cpp">
       <Filter>源文件\线性代数</Filter>
     </ClCompile>
+    <ClCompile Include="VectorException.cpp">
+      <Filter>源文件\线性代数</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <Text Include="介绍和目录.txt">
@@ -128,6 +131,9 @@
       <Filter>头文件\线性代数</Filter>
     </ClInclude>
     <ClInclude Include="ColumnVector.h">
+      <Filter>头文件\线性代数</Filter>
+    </ClInclude>
+    <ClInclude Include="VectorException.h">
       <Filter>头文件\线性代数</Filter>
     </ClInclude>
   </ItemGroup>

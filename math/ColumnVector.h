@@ -3,8 +3,9 @@
 #include<string>
 #include<ostream>
 #include<sstream>
+#include"VectorException.h"
 //列向量
-template<typename T>
+template<typename T=double>
 class ColumnVector:public std::vector<T>
 {
 public:
@@ -21,7 +22,7 @@ public:
 	}
 	ColumnVector<T>& operator+=(const ColumnVector<T>& or ) {
 		if (size()!=or.size()) {
-			//TODO: 添加抛出异常
+			throw DimensionNotMatch("向量加等");
 		}
 		for(size_t i = 0; i < size(); i++) {
 			at(i) += or .at(i);
@@ -29,6 +30,9 @@ public:
 		return *this;
 	}
 	ColumnVector<T> operator+(const ColumnVector<T>& k)const{
+		if (size()!=k.size()) {
+			throw DimensionNotMatch("向量加法");
+		}
 		auto tem = *this;
 		return tem += k;
 	}

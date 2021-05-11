@@ -96,6 +96,7 @@
     </ClCompile>
     <ClCompile Include="RowVector.cpp" />
     <ClCompile Include="setTheory.cpp" />
+    <ClCompile Include="VectorException.cpp" />
     <ClCompile Include="源.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -145,6 +146,7 @@
     <ClInclude Include="tool.h">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">false</ExcludedFromBuild>
     </ClInclude>
+    <ClInclude Include="VectorException.h" />
     <ClInclude Include="vectorSpace.h">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
     </ClInclude>
